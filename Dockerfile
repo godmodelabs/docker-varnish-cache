@@ -10,4 +10,5 @@ RUN apt-key adv --fetch-keys https://packagecloud.io/varnishcache/varnish60lts/g
 
 VOLUME /etc/varnish
 EXPOSE  80 6082
-ENTRYPOINT exec /usr/sbin/varnishd -F -a :80 -T :6082 -f /etc/varnish/default.vcl -s malloc,1G
+ENTRYPOINT ["/usr/sbin/varnishd", "-F", "-a", ":80", "-T", ":6082", "-f", "/etc/varnish/default.vcl"]
+CMD ["-s", "malloc,1G"]

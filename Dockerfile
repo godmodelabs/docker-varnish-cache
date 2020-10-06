@@ -8,6 +8,10 @@ RUN curl -sL https://packagecloud.io/varnishcache/varnish65/gpgkey | apt-key add
     apt-get update -q -y && \
     apt-get install -q -y varnish && \
     apt-get -q clean && rm -rf /var/lib/apt/lists/*
+# tools for reloads, ...
+RUN apt-get update -q -y && \
+    apt-get install -q -y procps psmisc && \
+    apt-get -q clean && rm -rf /var/lib/apt/lists/*
 
 VOLUME /etc/varnish
 EXPOSE  80 6082

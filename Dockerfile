@@ -1,9 +1,9 @@
 FROM debian:buster
 
 RUN apt-get update -q -y && \
-    apt-get install -q -y apt-transport-https ca-certificates gnupg && \
+    apt-get install -q -y apt-transport-https ca-certificates gnupg curl && \
     apt-get -q clean && rm -rf /var/lib/apt/lists/*
-RUN apt-key adv --fetch-keys https://packagecloud.io/varnishcache/varnish65/gpgkey && \
+RUN curl -sL https://packagecloud.io/varnishcache/varnish65/gpgkey | apt-key add - && \
     echo "deb https://packagecloud.io/varnishcache/varnish65/debian/ buster main" > /etc/apt/sources.list.d/varnish.list && \
     apt-get update -q -y && \
     apt-get install -q -y varnish && \
